@@ -1,22 +1,21 @@
-const list = document.getElementById('infinite-list');
-let itemCount = 0;
+//your code here!
+const list = document.getElementById('infi-list');
 
-// Function to add new list items
-function addItems(count = 10) {
+// Function to add list items
+function addItems(count) {
   for (let i = 0; i < count; i++) {
-    const li = document.createElement('li');
-    li.textContent = `Item ${++itemCount}`;
-    list.appendChild(li);
+    const listItem = document.createElement('li');
+    listItem.textContent = `Item ${list.children.length + 1}`;
+    list.appendChild(listItem);
   }
 }
 
-// Initial 10 items
+// Initial load with 10 items
 addItems(10);
 
-// Listen for scroll
-window.addEventListener('scroll', () => {
-  // Check if the user has reached the bottom
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 5) {
-    addItems(2); // Add 2 more items when at the bottom
+// Infinite scroll logic
+list.addEventListener('scroll', () => {
+  if (list.scrollTop + list.clientHeight >= list.scrollHeight) {
+    addItems(2); // Add 2 more items when scrolled to the bottom
   }
 });
